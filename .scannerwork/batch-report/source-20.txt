@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Evolution;
+use Illuminate\Http\Request;
+use App\Patient ;
+use App\Aliment;
+use App\Category ;
+use App\Rapport ;
+use Dingo\Api\Routing\Helpers;
+
+class ApiController extends Controller{
+
+    public function getEvolution(){
+        return Evolution::all();
+    }
+
+    public function getUsers(){
+	return Patient::all();
+	}
+
+    public function getAliments(){
+        return Aliment::all();
+        }
+
+    public function getCategories(){
+        return Category::all();
+        }
+ 
+	public function getUsersByPass($pass){
+	 return Patient::where('clef',$pass)->get();
+	}
+
+    public function getAlimentsByCategory($category_id){
+        return Aliment::where('category_id',$category_id)->get() ;
+    }
+
+    public function getAlimentByName($name)
+    {
+        return Aliment::where('name', $name)->get();
+    }
+    public function getAlimentsById($id){
+        return Aliment::where('id',$id)->get();
+
+    }
+
+    public function postAlimentAndroid($name , $category_id , $quantite){
+        $aliment = new Aliment();
+        $aliment->name = $name;
+        $aliment->category_id = $category_id;
+        $aliment->quantite= $quantite;
+
+        $aliment->save();
+
+        return Aliment::where('name',$name)->get();
+    }
+
+    public function postRapportAndroid($r1 , $r2 , $r3 , $r4 , $r5 , $r6 , $r7 , $r8 , $r9 , $r10 , $r11 , $r12 , $r13 , $r14 , $r15 , $r16){
+        $rapport = new Rapport();
+
+        $rapport->glucoAvPetitDej = $r1 ;
+        $rapport->glucoAfPetitDej = $r2 ;
+        $rapport->insPetitDej = $r3 ;
+        $rapport->insAPetitDej = $r4 ;
+
+        $rapport->glucoAvDej = $r5 ;
+        $rapport->glucoAfDej = $r6 ;
+        $rapport->insDej = $r7 ;
+        $rapport->insADej = $r8 ;
+
+        $rapport->glucoAvColl = $r9 ;
+        $rapport->glucoAfColl = $r10 ;
+        $rapport->insColl = $r11 ;
+        $rapport->insAColl = $r12 ;
+
+        $rapport->glucoAvDin = $r13 ;
+        $rapport->glucoAfDin = $r14 ;
+        $rapport->insDin = $r15 ;
+        $rapport->insADin = $r16 ;
+
+        $rapport->save();
+
+
+    }
+
+}

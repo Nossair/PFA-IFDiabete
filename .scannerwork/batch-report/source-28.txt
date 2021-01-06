@@ -1,0 +1,287 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Aliment ;
+use App\Evolution;
+use DB;
+use App\Retios;
+use App\Category ;
+use App\Dossier ;
+use Image;
+use Excel;
+use PDF;
+use App\Patient ; 
+use Hash;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+class HomeController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    public function index()
+    {
+        $categories = Category::all() ;
+        $aliments = Aliment::orderBy('id')->get();
+        return view('home',['aliments'=>$aliments , 'categories' => $categories] );
+    }
+
+    public function addPatient(){
+        return view('addDossier');	
+	}
+
+	public function addEvolution(){
+        return view('suivip');
+    }
+
+    public function addAliment()
+    {
+   	 $categories = Category::all() ;  
+  	 return view( 'addAliment' , ['categories' => $categories ]);
+    }
+
+    public function getAliments($id = null)
+    {
+	$header = array (
+                'Content-Type' => 'application/json; charset=UTF-8',
+                'charset' => 'utf-8'
+            );
+
+        if ($id == null) {
+            $aliments = Aliment::all(array('id','name' , 'category_id' , 'quantite', 'glucide'));
+        } else {
+            $aliments = Aliment::find($id, array('id','name' , 'category_id', 'quantite', 'glucide'));
+        }
+        return response()->json(array(
+            'error' => false,
+            'aliment' => $aliments,
+            'status_code' => 200
+        ),200 ,$header,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getCategories($id = null)
+    {
+	$header = array (
+                'Content-Type' => 'application/json; charset=UTF-8',
+                'charset' => 'utf-8' 
+		);
+
+        if ($id == null) {
+            $categories = Category::all(array('id', 'name', 'image'));
+        } else {
+            $categories = Category::find($id, array('id', 'name', 'image'));
+        }
+        return response()->json(array(
+            'error' => false,
+            'user' => $categories,
+            'status_code' => 200
+        ),200 ,$header,JSON_UNESCAPED_UNICODE);
+    }
+
+    public function afficherAliments(){
+	$categories = Category::all() ;
+	$aliments = Aliment::orderBy('id')->get() ;
+	return view('afficherAliments',['aliments'=>$aliments , 'categories' => $categories ] );
+	}   
+
+    public function postAliment(Request $request){
+	$this->validate($request , [
+	'name' => 'required|unique:aliments',
+	'quantite' => 'numeric' , 'glucide' => 'required|numeric' ] );
+	$file=$request->file('image');
+	$image = new Image();
+	$aliment = new Aliment();
+        $aliment->name = $request['name'];
+	$aliment->quantite = $request['quantite'];
+        $aliment->glucide = $request['glucide'];
+	$id = DB::table('categories')->where('name' , $request['list'])->value('id') ;
+	$aliment->category_id = $id;
+	$aliment->save() ;
+	
+	$file->move(base_path().'/public/images/'.$aliment->id.'.jpg');	
+	$image->aliment_id = $aliment->id ;
+	$image->path = '/images/'.$aliment->id.'.jpg';
+	$image->save() ;
+
+	$aliments = Aliment::all() ; 
+	$images = Image::all() ;
+	return redirect()->route('afficherAliments' ,['aliments' => $aliments , 'images' => $images] ) ;
+	}
+
+	public function postEvolution(Request $request){
+        $evolution = new Evolution();
+        $evolution->dateConsult=$request['dateConsult'];
+        $evolution->timeConsult=$request['timeConsult'];
+        $evolution->poids=$request['poids'];
+        $evolution->imc=$request['imc'];
+        $evolution->tdt=$request['tdt'];
+        $evolution->gp=$request['gp'];
+        $evolution->gdj=$request['gdj'];
+        $evolution->gc=$request['gc'];
+        $evolution->gd=$request['gd'];
+        $evolution->coma=$request['Coma'];
+        $evolution->HbA1c=$request['HbA1c'];
+        $evolution->nbEpHmi=$request['nbEpHmi'];
+        $evolution->nbreHMaj=$request['nbreHMaj'];
+        $evolution->ratioPetitDej=$request['petit'];
+        $evolution->ratioDej=$request['dejeuner'];
+        $evolution->ratioColl=$request['coll'];
+        $evolution->ratioDinnez=$request['diner'];
+        $evolution->IndiceSensibilite= $request['is'];
+        $evolution->resucrage=$request['Resucrage'];
+        $evolution->ressentie=$request['ressentie'];
+        $evolution->chPBHmi=$request['chPBHmi'];
+        $evolution->resucrf=$request['resucrf'];
+        $evolution->resucrC=$request['resucrC'];
+        $evolution->resucrI=$request['resucrI'];
+
+
+        $id = DB::table('dossiers')->where('nom',$request['nomPatient'])->value('id');
+        $evolution->dossier_id=$id;
+        $dossier = Dossier::find($id, array('id','dateC','timeC','ip','ed','tel','nom','prenom','age','sexe','addresse','milieuVie','niveauSc','etab','sitMar','fraterie','ressourcesFinancieres','mutualiste','organisme','debutDiabete','dureeDiabete','anciennete','poids','taille','imc','tdt','lypodystrophie','avatar','ratioPetitDej','ratioDej','ratioColl','ratioDinnez'));
+        
+        
+        $evolution->save();
+        return redirect()->route('getDossiersById',['id' => $id , 'dossier' => $dossier]);
+    }
+    public function postRatio(Request $request){
+
+        $ratio = new Retios();
+        $ratio->dateChanges=$request['date'];
+        $ratio->timeChanges=$request['time'];
+        $ratio->ratioPetitDej=$request['petit'];
+        $ratio->ratioDej=$request['dejeuner'];
+        $ratio->ratioColl=$request['coll'];
+        $ratio->ratioDinnez=$request['diner'];
+        $id = DB::table('dossiers')->where('nom',$request['nomPatient'])->value('id');
+        $ratio->dosier_id=$id;
+        $dossier = Dossier::find($id, array('id','dateC','timeC','ip','ed','tel','nom','prenom','age','sexe','addresse','milieuVie','niveauSc','etab','sitMar','fraterie','ressourcesFinancieres','mutualiste','organisme','debutDiabete','dureeDiabete','anciennete','poids','taille','imc','tdt','lypodystrophie','avatar','created_at','updated_at','ratioPetitDej','ratioDej','ratioColl','ratioDinnez'));
+        $ratio->save();
+        $ratio = Retios::orderBy('id')->get();
+        $evolutions = Evolution::orderBy('id')->get();
+        return redirect()->route('getDossiersById',['id'=>$id,'dossier'=>$dossier]);
+    }
+    public function postPatient(Request $request){
+	$patient = new Patient();
+	$dossier = new Dossier();
+	$clef = unique_random('patients','clef',8);
+	
+	$dossier->clef=$clef ;
+	$patient->clef=$clef ;
+	$dossier->dateC=$request['dateC'];
+	$dossier->timeC=$request['timeC'];
+	$dossier->ip=$request['ip'];
+	$dossier->ed=$request['ed'];
+	$dossier->tel=$request['tel'];
+	$patient->nom=$request['name'];
+	$dossier->nom=$request['name'];
+	$patient->prenom=$request['prenom'];
+	$dossier->prenom=$request['prenom'];
+	$dossier->age=$request['age'];
+	$dossier->sexe=$request->input('sexe'); 
+	$dossier->addresse=$request['addresse'];
+	$dossier->milieuVie=$request->input('milieu');	
+	$dossier->niveauSc=$request->input('nc');
+	$dossier->etab=$request['etab'];
+	$dossier->sitMar=$request->input('sm');
+	$dossier->fraterie=$request['fraterie'];
+	$dossier->ressourcesFinancieres=$request->input('rf');
+	$dossier->mutualiste=$request->input('mutuel');
+	$dossier->organisme=$request['organisme'];
+	$dossier->debutDiabete=$request->input('debut');
+	$dossier->dureeDiabete=$request->input('duree');
+	$dossier->anciennete=$request->input('anciennete');
+	$dossier->poids=$request['poids'];	
+	$dossier->taille=$request['taille'];
+	$dossier->imc=$request['imc'];
+	$dossier->tdt=$request['tdt'];
+	$dossier->lypodystrophie=$request->input('lypody'); 
+    if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('images/' . $filename ) );
+
+            $dossier->avatar = $filename;
+    }
+	$dossier->ratioPetitDej=$request['petit'];
+	$dossier->ratioDej=$request['dejeuner'];
+	$dossier->ratioColl=$request['coll'];
+	$dossier->ratioDinnez=$request['diner'];
+	$dossier->Objectif=$request['obj'];
+	$dossier->IndiceSensibilite= $request['is'] ;
+
+	$patient->ratioPetitDej=$request['petit'];
+	$patient->ratioDej=$request['dejeuner'];
+	$patient->ratioColl=$request['coll'];
+	$patient->ratioDinnez=$request['diner'];
+    $patient->IndiceSensibilite= $request['is'];
+
+   
+
+
+	$dossier->save();
+	$patient->save();
+        $dossiers = Dossier::all() ;
+        
+	return redirect()->route('getDossier' ,['dossiers' => $dossiers]) ;
+	}
+    public function datatable(){
+        return view ('datatable');
+    }
+    public function getDossiers()
+    {
+        $dossiers = Dossier::all();
+
+        return view('datatable' , ['dossiers' => $dossiers ]);
+    }
+    public function getDossiersById($id){
+	 $dossier = Dossier::find($id, array('id','dateC','timeC','ip','ed','tel','nom','prenom','age','sexe','addresse','milieuVie','niveauSc','etab','sitMar','fraterie','ressourcesFinancieres','mutualiste','organisme','debutDiabete','dureeDiabete','anciennete','poids','taille','imc','tdt','lypodystrophie','avatar','created_at','updated_at','ratioPetitDej','ratioDej','ratioColl','ratioDinnez','IndiceSensibilite','Objectif'));
+	 $evolutions = Evolution::orderBY('id')->get();
+	 return view('p' , ['id'=>$id, 'dossier' => $dossier , 'evolutions' => $evolutions]);
+	}
+	public function suivip($id){
+        $dossier = Dossier::find($id, array('id','ip','ed','tel','nom','prenom','age','sexe','addresse','milieuVie','niveauSc','etab','sitMar','fraterie','ressourcesFinancieres','mutualiste','organisme','debutDiabete','dureeDiabete','anciennete','poids','taille','imc','tdt','lypodystrophie','avatar','created_at','updated_at','ratioPetitDej','ratioDej','ratioColl','ratioDinnez','IndiceSensibilite','Objectif'));
+        return view('suivip' , ['dossier' => $dossier ]);
+    }
+    public function update($id, Request $request)
+    {
+        // store
+        $aliment = Aliment::find($id);
+        $aliment->quantite   = $request['quantite'];
+        $aliment->glucide   = $request['glucide'];
+        $aliment->save();
+        // redirect
+        $categories = Category::all();
+        $aliments = Aliment::orderBy('id')->get() ;
+        return view('afficherAliments',['aliments'=>$aliments , 'categories' => $categories ]);
+    }
+    public function conEvolutionToExcel($id){
+        $dossier = Dossier::find($id, array('id','ip','ed','tel','nom','prenom','age','sexe','addresse','milieuVie','niveauSc','etab','sitMar','fraterie','ressourcesFinancieres','mutualiste','organisme','debutDiabete','dureeDiabete','anciennete','poids','taille','imc','tdt','lypodystrophie','avatar','created_at','updated_at','ratioPetitDej','ratioDej','ratioColl','ratioDinnez','IndiceSensibilite','Objectif'));
+        $evolutions = DB::table('evolutions')->where('dossier_id',$id)->get();
+        $data1= json_decode( json_encode($evolutions), true);
+        Excel::create($dossier->nom.'_'.$dossier->prenom, function($excel) use($data1){
+        $excel->sheet('feuille 1', function($sheet) use($data1){
+        $sheet->fromArray($data1);
+            });
+        })->export('xls');
+    }
+    public function conDossierToPdf($id,Request $request){
+        
+        $dossier = Dossier::find($id, array('id','ip','ed','tel','nom','prenom','age','sexe','addresse','milieuVie','niveauSc','etab','sitMar','fraterie','ressourcesFinancieres','mutualiste','organisme','debutDiabete','dureeDiabete','anciennete','poids','taille','imc','tdt','lypodystrophie','avatar','created_at','updated_at','ratioPetitDej','ratioDej','ratioColl','ratioDinnez','IndiceSensibilite','Objectif'));
+        
+        view()->share('dossier',$dossier);
+        
+        if ($request->has('download')){
+        $pdf = PDF::loadView('pdf.dossierPDF');
+        return $pdf->download('dossier_medicale.pdf');
+        }
+        return view('pdf.dossierPDF');
+    }
+}
+
+

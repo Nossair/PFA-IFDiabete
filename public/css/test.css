@@ -1,0 +1,28 @@
+.conteneur{
+	float: left;
+	width:230px;
+	border-top:2px solid #c1c409;
+	border-left:1px solid #e0ef3e;
+	border-right:1px solid #e0ef3e;
+	border-bottom: 1px solid #f4ff82;
+}
+.image {
+	border-top:7px solid #2f5b13;
+	float: left;
+	height:100px;
+	width:100%;
+	content: url(../images/9770.jpg);
+}
+.textt {
+	float: left;
+	height: 70px;
+	width: 100%;
+	color: #000000;
+	font-weight: bolder;
+	background-color: #d3f9bb;
+}
+
+.box-body{
+	max-height:300px;
+	overflow:auto
+}

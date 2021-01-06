@@ -1,0 +1,150 @@
+Environment variables:
+  - =::=::\
+  - ACLOCAL_PATH=C:\Program Files\Git\mingw32\share\aclocal;C:\Program Files\Git\usr\share\aclocal
+  - ALLUSERSPROFILE=C:\ProgramData
+  - APPDATA=C:\Users\Abdelilah\AppData\Roaming
+  - CATALINA_HOME=C:\Program Files\Apache Software Foundation\Tomcat 7.0
+  - COMMONPROGRAMFILES=C:\Program Files\Common Files
+  - COMPUTERNAME=XXX
+  - COMSPEC=C:\Windows\system32\cmd.exe
+  - CONFIG_SITE=C:/Program Files/Git/mingw32/etc/config.site
+  - DISPLAY=needs-to-be-defined
+  - ESET_OPTIONS=                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  - EXEPATH=C:\Program Files\Git
+  - FP_NO_HOST_CHECK=NO
+  - HOME=C:\Users\Abdelilah
+  - HOMEDRIVE=C:
+  - HOMEPATH=\Users\Abdelilah
+  - HOSTNAME=XXX
+  - INFOPATH=C:\Program Files\Git\usr\local\info;C:\Program Files\Git\usr\share\info;C:\Program Files\Git\usr\info;C:\Program Files\Git\share\info
+  - JAVA_HOME=C:\Program Files\Java\jdk1.8.0_131
+  - LANG=fr_FR.UTF-8
+  - LOCALAPPDATA=C:\Users\Abdelilah\AppData\Local
+  - LOGONSERVER=\\XXX
+  - MANPATH=C:\Program Files\Git\mingw32\share\man;C:\Program Files\Git\usr\local\man;C:\Program Files\Git\usr\share\man;C:\Program Files\Git\usr\man;C:\Program Files\Git\share\man
+  - MAVEN=C:\Users\Abdelilah\Downloads\Compressed\apache-maven-3.5.0
+  - MINGW_CHOST=i686-w64-mingw32
+  - MINGW_PACKAGE_PREFIX=mingw-w64-i686
+  - MINGW_PREFIX=C:/Program Files/Git/mingw32
+  - MSYSTEM=MINGW32
+  - MSYSTEM_CARCH=i686
+  - MSYSTEM_CHOST=i686-w64-mingw32
+  - MSYSTEM_PREFIX=C:/Program Files/Git/mingw32
+  - NUMBER_OF_PROCESSORS=4
+  - OLDPWD=C:/sonar-scanning-examples/sonarqube-scanner
+  - ORIGINAL_PATH=C:\Program Files\Git\mingw32\bin;C:\Program Files\Git\usr\bin;C:\Users\Abdelilah\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Java\jdk1.8.0_131\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Apache Software Foundation\Tomcat 7.0\bin;C:\Users\Abdelilah\Downloads\Compressed\apache-maven-3.5.0\bin;C:\Program Files\Brackets\command;C:\Program Files\Skype\Phone;C:\Users\Abdelilah\AppData\Roaming\Composer\vendor\bin
+  - ORIGINAL_TEMP=C:/Users/ABDELI~1/AppData/Local/Temp
+  - ORIGINAL_TMP=C:/Users/ABDELI~1/AppData/Local/Temp
+  - OS=Windows_NT
+  - PATH=C:\Users\Abdelilah\bin;C:\Program Files\Git\mingw32\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw32\bin;C:\Program Files\Git\usr\bin;C:\Users\Abdelilah\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Java\jdk1.8.0_131\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Apache Software Foundation\Tomcat 7.0\bin;C:\Users\Abdelilah\Downloads\Compressed\apache-maven-3.5.0\bin;C:\Program Files\Brackets\command;C:\Program Files\Skype\Phone;C:\Users\Abdelilah\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  - PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+  - PKG_CONFIG_PATH=C:\Program Files\Git\mingw32\lib\pkgconfig;C:\Program Files\Git\mingw32\share\pkgconfig
+  - PLINK_PROTOCOL=ssh
+  - PROCESSOR_ARCHITECTURE=x86
+  - PROCESSOR_IDENTIFIER=x86 Family 6 Model 37 Stepping 5, GenuineIntel
+  - PROCESSOR_LEVEL=6
+  - PROCESSOR_REVISION=2505
+  - PROGRAMFILES=C:\Program Files
+  - PSModulePath=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\
+  - PT7HOME=C:\Program Files\Cisco Packet Tracer 7.0
+  - PUBLIC=C:\Users\Public
+  - PWD=C:/xampp/htdocs/admin
+  - ProgramData=C:\ProgramData
+  - SESSIONNAME=Console
+  - SHELL=C:\Program Files\Git\usr\bin\bash.exe
+  - SHLVL=1
+  - SSH_ASKPASS=C:/Program Files/Git/mingw32/libexec/git-core/git-gui--askpass
+  - SYSTEMDRIVE=C:
+  - SYSTEMROOT=C:\Windows
+  - TEMP=C:\Users\ABDELI~1\AppData\Local\Temp
+  - TERM=xterm
+  - TMP=C:\Users\ABDELI~1\AppData\Local\Temp
+  - TMPDIR=C:\Users\ABDELI~1\AppData\Local\Temp
+  - USERDOMAIN=XXX
+  - USERNAME=Abdelilah
+  - USERPROFILE=C:\Users\Abdelilah
+  - WINDIR=C:\Windows
+System properties:
+  - awt.toolkit=sun.awt.windows.WToolkit
+  - file.encoding=Cp1252
+  - file.encoding.pkg=sun.io
+  - file.separator=\
+  - java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+  - java.awt.headless=true
+  - java.awt.printerjob=sun.awt.windows.WPrinterJob
+  - java.class.path=C:/sonar-scanner/lib/sonar-scanner-cli-3.0.3.778.jar
+  - java.class.version=52.0
+  - java.endorsed.dirs=C:\Program Files\Java\jdk1.8.0_131\jre\lib\endorsed
+  - java.ext.dirs=C:\Program Files\Java\jdk1.8.0_131\jre\lib\ext;C:\Windows\Sun\Java\lib\ext
+  - java.home=C:\Program Files\Java\jdk1.8.0_131\jre
+  - java.io.tmpdir=C:\Users\ABDELI~1\AppData\Local\Temp\
+  - java.library.path=C:\Program Files\Java\jdk1.8.0_131\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Users\Abdelilah\bin;C:\Program Files\Git\mingw32\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw32\bin;C:\Program Files\Git\usr\bin;C:\Users\Abdelilah\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Java\jdk1.8.0_131\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Apache Software Foundation\Tomcat 7.0\bin;C:\Users\Abdelilah\Downloads\Compressed\apache-maven-3.5.0\bin;C:\Program Files\Brackets\command;C:\Program Files\Skype\Phone;C:\Users\Abdelilah\AppData\Roaming\Composer\vendor\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;.
+  - java.runtime.name=Java(TM) SE Runtime Environment
+  - java.runtime.version=1.8.0_131-b11
+  - java.specification.name=Java Platform API Specification
+  - java.specification.vendor=Oracle Corporation
+  - java.specification.version=1.8
+  - java.vendor=Oracle Corporation
+  - java.vendor.url=http://java.oracle.com/
+  - java.vendor.url.bug=http://bugreport.sun.com/bugreport/
+  - java.version=1.8.0_131
+  - java.vm.info=mixed mode, sharing
+  - java.vm.name=Java HotSpot(TM) Client VM
+  - java.vm.specification.name=Java Virtual Machine Specification
+  - java.vm.specification.vendor=Oracle Corporation
+  - java.vm.specification.version=1.8
+  - java.vm.vendor=Oracle Corporation
+  - java.vm.version=25.131-b11
+  - line.separator=
+
+  - os.arch=x86
+  - os.name=Windows 7
+  - os.version=6.1
+  - path.separator=;
+  - project.home=C:/xampp/htdocs/admin
+  - scanner.home=C:/sonar-scanner
+  - sun.arch.data.model=32
+  - sun.boot.class.path=C:\Program Files\Java\jdk1.8.0_131\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_131\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_131\jre\classes
+  - sun.boot.library.path=C:\Program Files\Java\jdk1.8.0_131\jre\bin
+  - sun.cpu.endian=little
+  - sun.cpu.isalist=pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86
+  - sun.desktop=windows
+  - sun.io.unicode.encoding=UnicodeLittle
+  - sun.java.command=org.sonarsource.scanner.cli.Main -e -X
+  - sun.java.launcher=SUN_STANDARD
+  - sun.jnu.encoding=Cp1252
+  - sun.management.compiler=HotSpot Client Compiler
+  - sun.os.patch.level=Service Pack 1
+  - user.country=FR
+  - user.dir=C:\xampp\htdocs\admin
+  - user.home=C:\Users\Abdelilah
+  - user.language=fr
+  - user.name=Abdelilah
+  - user.script=
+  - user.timezone=Europe/Paris
+  - user.variant=
+SonarQube plugins:
+  - C# 5.10.1.1411 (csharp)
+  - Python 1.7.0.1195 (python)
+  - SonarJava 4.9.0.9858 (java)
+  - Flex 2.3 (flex)
+  - Git 1.2 (scmgit)
+  - SonarXML 1.4.2.885 (xml)
+  - SonarPHP 2.10.0.2087 (php)
+  - SVN 1.4.0.522 (scmsvn)
+  - SonarJS 3.0.0.4962 (javascript)
+Global properties:
+  - sonar.core.id=AV0ZnnSDeshtr2y7VsmB
+  - sonar.core.startTime=2017-07-06T22:36:40+0200
+Settings for module: testproject
+  - sonar.exclusions=app/Providers/**
+  - sonar.php.coverage.reportPath=ci/codeCoverage/codeCoverage.xml
+  - sonar.php.tests.reportPath=ci/testResults.xml
+  - sonar.projectBaseDir=C:\xampp\htdocs\admin
+  - sonar.projectKey=testproject
+  - sonar.projectName=testproject
+  - sonar.projectVersion=1.0.0
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=app
+  - sonar.verbose=true
+  - sonar.working.directory=C:\xampp\htdocs\admin\.scannerwork

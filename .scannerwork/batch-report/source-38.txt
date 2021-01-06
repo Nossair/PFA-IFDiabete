@@ -1,0 +1,19 @@
+<?php
+
+namespace App;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
+
+class Patient extends Model
+{
+    protected $table = 'patients';
+     protected $fillable = ['nom','prenom','clef','ratioPetitDej','ratioDej','ratioColl','ratioDinnez','IndiceSensibilite'] ;
+
+     public function setPasswordAttribute($password){
+	 $this->attributes['clef'] = bcrypt($password);
+	}
+
+
+
+}
